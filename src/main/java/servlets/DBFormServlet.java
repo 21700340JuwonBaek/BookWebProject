@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/DBFormServlet")
 public class DBFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,6 +23,8 @@ public class DBFormServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF8");
+		response.setContentType("text/html;charset=utf8");
 		String dbID = request.getParameter("id");
 		String dbPw = request.getParameter("pw");
 		response.setContentType("text/html;charset=utf8");

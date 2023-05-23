@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("AddBook")
+@WebServlet("/AddBook")
 public class AddBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -20,7 +20,10 @@ public class AddBook extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		
+		request.setCharacterEncoding("UTF8");
+		response.setContentType("text/html;charset=utf8");
+		String id = request.getParameter("id");
+		String title = request.getParameter("title");
 	}
 
 }

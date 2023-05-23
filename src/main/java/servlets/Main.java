@@ -16,7 +16,6 @@ import dao.BookDAO;
 import vo.Book;
 
 
-@WebServlet("/Main")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +29,8 @@ public class Main extends HttpServlet {
 		 * BestSeller
 		 * Random 5 books 반환. 
 		 * */
+		request.setCharacterEncoding("UTF8");
+		response.setContentType("text/html;charset=utf8");
 		BookDAO bookDao = new BookDAO();
 		List<Book> bestSellerList = bookDao.getBestSeller();
 		List<Book> allBook = bookDao.getAllBook();
