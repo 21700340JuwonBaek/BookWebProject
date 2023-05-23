@@ -26,7 +26,7 @@ public class DeleteBook extends HttpServlet {
 		BookDAO bookDao = new BookDAO();
 		bookDao.deleteBookById(id);
 		
-		response.sendRedirect("main");
+		response.sendRedirect("/main");
 	}
 
 }

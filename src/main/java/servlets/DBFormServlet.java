@@ -29,11 +29,13 @@ public class DBFormServlet extends HttpServlet {
 		String dbPw = request.getParameter("pw");
 		response.setContentType("text/html;charset=utf8");
 		if(dbID.equals("root") && dbPw.equals("1234")) {
-			response.sendRedirect("Main");
+			response.sendRedirect("/main");
 		}else {
 			PrintWriter printer = response.getWriter();
-			printer.println("<h1>데이터베이스의 정보가 일치하지 않습니다. 관리자에게 문의하세요.</h1>");
-			printer.println("<a href='index.jsp'>처음으로 돌아가기</a>");
+			printer.println("<script>");
+			printer.println("alert('일치하지 않습니다.');");
+			printer.println("history.back(-1);");
+			printer.println("</script>");
 		}	
 	}
 	

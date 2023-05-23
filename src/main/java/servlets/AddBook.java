@@ -19,7 +19,8 @@ public class AddBook extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("AddBook Test 진입");
 		request.setCharacterEncoding("UTF8");
 		response.setContentType("text/html;charset=utf8");
 		String title = request.getParameter("title");
@@ -37,9 +38,7 @@ public class AddBook extends HttpServlet {
 		BookDAO bookDao = new BookDAO();
 		bookDao.addBook(book);
 		
-		response.sendRedirect("main");	
-		}
-
-
+		response.sendRedirect("main.jsp");	
+	}
 
 }
