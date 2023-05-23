@@ -12,16 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import dao.BookDAO;
 import vo.Book;
 
-public class AddBook extends HttpServlet {
+public class UpdateBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AddBook() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UpdateBook() {
         super();
     }
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF8");
 		response.setContentType("text/html;charset=utf8");
+		BookDAO bookDao = new BookDAO();
+		
+		int id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String writtenDateStr = request.getParameter("writtenDate");
@@ -32,14 +44,11 @@ public class AddBook extends HttpServlet {
 		int remain = Integer.parseInt(request.getParameter("remain"));
 		int saledNum = Integer.parseInt(request.getParameter("saledNum"));
 		
-		Book book = new Book(-1, title, author, writtenDate, company, price, category, remain, saledNum); 
+		Book book = new Book(id, title, author, writtenDate, company, price, category, remain, saledNum); 
+		bookDao.updateBook(book);
 		
-		BookDAO bookDao = new BookDAO();
-		bookDao.addBook(book);
+		response.sendRedirect("main");
 		
-		response.sendRedirect("main");	
-		}
-
-
+	}
 
 }

@@ -216,6 +216,42 @@ public class BookDAO{
 
 	}
 	
+	public List<Book> searchBookByTitleOrAuthor(String titleOrAuthor) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM book WHERE title like '%"+titleOrAuthor+"%' or author like '%"+titleOrAuthor+"%'";
+		List<Book> bookList = new LinkedList<>();
+		try {
+			conn = connDB();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				Book currentBook = new Book(
+						rs.getInt("ID"),
+						rs.getString("title"),
+						rs.getString("author"),
+						rs.getDate("writtenDate"),
+						rs.getString("company"),
+						rs.getInt("price"),
+						rs.getString("category"),
+						rs.getInt("remain"),
+						rs.getInt("saledNum")
+						);
+				bookList.add(currentBook);
+			}
+			conn.close();
+			ps.close();
+			rs.close();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return bookList;
+
+	}
 	
 	
 	
