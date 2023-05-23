@@ -15,15 +15,20 @@ public class BookDAO{
 	
 	public Connection connDB() {
 		Connection conn = null;
-		String url = "jdbc:mysql://localhost:3306/db01?autoReconnect=true"; 
+		String url = "jdbc:mysql://localhost:3306/db01"; 
 		String id = "root";
 		String pw = "1234";
 		
 		try {
+			  Class.forName("com.mysql.cj.jdbc.Driver");
 	    	  conn = DriverManager.getConnection(url, id, pw);
 		}catch(SQLException e) {
 	          System.err.println("MySQL 데이터베이스 연결 중 오류가 발생하였습니다.");
 	          e.printStackTrace();
+		} 
+		catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return conn;
