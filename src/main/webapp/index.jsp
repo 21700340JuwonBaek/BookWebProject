@@ -38,7 +38,7 @@ input {
 }
 
 .in {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #btn {
@@ -59,7 +59,7 @@ a {
 		<h1>도서 관리 프로그램</h1>
 	</div>
 	<div style="background-color: #EEEFF1;">
-		<form action="login">
+		<form method="post" action="login">
 			<input type="text" name="id" placeholder="아이디" class="in"> <input
 				type="password" name="pw" placeholder="비밀번호" class="in"> <input
 				onclick="alert('로그인 성공');" type="submit" id="btn" value="로그인"><br>
