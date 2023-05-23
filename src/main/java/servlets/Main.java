@@ -15,7 +15,7 @@ import javax.servlet.ServletContext;
 import dao.BookDAO;
 import vo.Book;
 
-
+@WebServlet("/BookWebProject/starting")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,6 +29,7 @@ public class Main extends HttpServlet {
 		 * BestSeller
 		 * Random 5 books 반환. 
 		 * */
+		System.out.println("Main GET start");
 		request.setCharacterEncoding("UTF8");
 		response.setContentType("text/html;charset=utf8");
 		BookDAO bookDao = new BookDAO();
@@ -41,7 +42,7 @@ public class Main extends HttpServlet {
 		Random random = new Random();
 		
 		for(int i = 0; i < count; i++) {
-			randomNumSet[i] = random.nextInt();
+			randomNumSet[i] = random.nextInt(allBook.size());
 			
 			for(int j = 0; j < i; j ++) {
 				if(randomNumSet[i] == randomNumSet[j]) i--;
@@ -49,11 +50,11 @@ public class Main extends HttpServlet {
 		}
 		
 		for(int i : randomNumSet) randomBooks.add(allBook.get(i));
-		
+		System.out.println("BestSeller:" + bestSellerList);
 		request.setAttribute("bestSeller", bestSellerList);
 		request.setAttribute("randomBooks", randomBooks);
 		ServletContext context =getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("main.jsp");
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 	}
 
